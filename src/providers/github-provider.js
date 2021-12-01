@@ -1,11 +1,13 @@
 import React, { createContext, useCallback, useState } from "react";
 import api from "../services/api";
+import PinnedRepos from "../services/PinnedRepos";
 
 export const GithubContext = createContext({
   loading: false,
   user: {},
   repositories: [],
   starred: [],
+  pinned: [],
 });
 
 const GithubProvider = ({ children }) => {
@@ -28,6 +30,7 @@ const GithubProvider = ({ children }) => {
     },
     repositories: [],
     starred: [],
+    pinned: [],
   });
 
   const getUser = (username) => {
@@ -86,11 +89,22 @@ const GithubProvider = ({ children }) => {
     });
   };
 
+  const getUserPinned = (username) => {
+    PinnedRepos.get(username).then(({ data }) => {
+      console.log("data: " + JSON.stringify(data));
+      setGithubState((prevState) => ({
+        ...prevState,
+        pinned: data,
+      }));
+    });
+  };
+
   const contextValue = {
     githubState,
     getUser: useCallback((username) => getUser(username), []),
     getUserRepos: useCallback((username) => getUserRepos(username), []),
     getUserStarred: useCallback((username) => getUserStarred(username), []),
+    getUserPinned: useCallback((username) => getUserPinned(username), []),
   };
 
   return (

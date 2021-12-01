@@ -4,13 +4,14 @@ import RepositoryItem from "../repository-item";
 import * as S from "./styled";
 
 const Repositories = () => {
-  const { githubState, getUserRepos, getUserStarred } = useGithub();
+  const { githubState, getUserRepos, getUserStarred, getUserPinned } = useGithub();
   const [hasUserForSearchrepos, setHasUserForSearchrepos] = useState(false);
 
   useEffect(() => {
     if (githubState.user.login) {
       getUserRepos(githubState.user.login);
       getUserStarred(githubState.user.login);
+      getUserPinned(githubState.user.login);
     }
     setHasUserForSearchrepos(githubState.repositories);
 
@@ -27,6 +28,7 @@ const Repositories = () => {
           <S.WrapperTabList>
             <S.WrapperTab>Repositories</S.WrapperTab>
             <S.WrapperTab>Starred</S.WrapperTab>
+            <S.WrapperTab>Pinned</S.WrapperTab>
           </S.WrapperTabList>
           <S.WrapperTabPanel>
             <S.WrapperList>
@@ -48,6 +50,18 @@ const Repositories = () => {
                   name={item.name}
                   linkToRepo={item.html_url}
                   fullName={item.full_name}
+                />
+              ))}
+            </S.WrapperList>
+          </S.WrapperTabPanel>
+          <S.WrapperTabPanel>
+            <S.WrapperList>
+              {githubState.pinned.map((item, index) => (
+                <RepositoryItem
+                  key={index}
+                  name={item.repo}
+                  linkToRepo={item.link}
+                  fullName={item.repo}
                 />
               ))}
             </S.WrapperList>
