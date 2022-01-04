@@ -32,38 +32,44 @@ const Repositories = () => {
           </S.WrapperTabList>
           <S.WrapperTabPanel>
             <S.WrapperList>
-              {githubState.repositories.map((item) => (
-                <RepositoryItem
-                  key={item.id}
-                  name={item.name}
-                  linkToRepo={item.full_name}
-                  fullName={item.full_name}
-                />
-              ))}
+              {githubState.repositories.map((item) => {
+                return (
+                  <RepositoryItem
+                    key={item.id}
+                    name={item.name}
+                    linkToRepo={`https://github.com/${item.full_name}`}
+                    fullName={item.full_name}
+                  />
+                )
+              })}
             </S.WrapperList>
           </S.WrapperTabPanel>
           <S.WrapperTabPanel>
             <S.WrapperList>
-              {githubState.starred.map((item) => (
-                <RepositoryItem
-                  key={item.id}
-                  name={item.name}
-                  linkToRepo={item.html_url}
-                  fullName={item.full_name}
-                />
-              ))}
+              {githubState.starred.map((item) => {
+                return (
+                  <RepositoryItem
+                    key={item.id}
+                    name={item.name}
+                    linkToRepo={item.html_url}
+                    fullName={item.full_name}
+                  />
+                )
+              })}
             </S.WrapperList>
           </S.WrapperTabPanel>
           <S.WrapperTabPanel>
             <S.WrapperList>
-              {githubState.pinned.map((item, index) => (
-                <RepositoryItem
-                  key={index}
-                  name={item.repo}
-                  linkToRepo={item.link}
-                  fullName={item.repo}
-                />
-              ))}
+              {githubState.pinned.map((item, index) => {
+                return (
+                  <RepositoryItem
+                    key={index}
+                    name={item.repo}
+                    linkToRepo={item.link}
+                    fullName={item.repo}
+                  />
+                )
+              })}
             </S.WrapperList>
           </S.WrapperTabPanel>
         </S.WrapperTabs>
