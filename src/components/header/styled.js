@@ -32,3 +32,15 @@ export const Wrapper = styled.div`
     }
   }
 `;
+
+export const H1Wrapper = styled.div`
+  margin: 16px;
+  display: flex;
+  justify-content: center;
+
+  h1 {
+    font-weight: bold;
+    font-size: 20px;
+  }
+`;
+
