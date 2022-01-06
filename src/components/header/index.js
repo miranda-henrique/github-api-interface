@@ -13,7 +13,7 @@ const Header = () => {
 
     let statusCode = await checkForUser(usernameForSearch);
 
-    { statusCode && handleStatusCode(statusCode) }
+    statusCode && handleStatusCode(statusCode)
   };
 
   const handleStatusCode = (statusCode) => {
