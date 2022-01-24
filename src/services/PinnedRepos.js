@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const PinnedRepos = axios.create({
-    baseURL: "https://gh-pinned-repos-5l2i19um3.vercel.app/?username=",
+    baseURL: "https://gh-pinned-repos.egoist.sh/?username=",
 });
 
 
